@@ -10,6 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import os
 from torch.autograd import Variable
+from mobilenet_v1 import mobilenet, MobileNet, mobilenet_05
 
 import transforms as transforms
 from skimage import io
@@ -38,7 +39,7 @@ inputs = transform_test(img)
 
 class_names = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
-net = VGG('mobileNet_05')
+net = mobilenet_05(num_classes=7)
 checkpoint = torch.load(os.path.join('FER2013_mobilenet_05', 'PrivateTest_model.t7'))
 net.load_state_dict(checkpoint['net'])
 net.cuda()
@@ -50,8 +51,10 @@ inputs = inputs.view(-1, c, h, w)
 inputs = inputs.cuda()
 inputs = Variable(inputs, volatile=True)
 outputs = net(inputs)
+print(outputs[0].shape)
+print(outputs[1].shape)
 
-outputs_avg = outputs.view(ncrops, -1).mean(0)  # avg over crops
+outputs_avg = outputs[1].view(ncrops, -1).mean(0)  # avg over crops
 
 score = F.softmax(outputs_avg)
 _, predicted = torch.max(outputs_avg.data, 0)
