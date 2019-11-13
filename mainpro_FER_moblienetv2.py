@@ -66,8 +66,8 @@ transform_train = transforms.Compose([
 ])
 
 transform_test = transforms.Compose([
-    transforms.TenCrop(cut_size),
-    transforms.Lambda(lambda crops: torch.stack([transforms.ToTensor()(crop) for crop in crops])),
+    transforms.Resize(cut_size),
+    transforms.ToTensor()
 ])
 
 # transform_test = transforms.Compose([
@@ -167,46 +167,6 @@ def adjust_learning_rate(optimizer, epoch, milestones=None):
     return cur_lr
 
 # Training
-def train_warmup(epoch):
-    print('\nEpoch: %d' % epoch)
-    global Train_acc
-    net.train()
-    train_loss = 0
-    f_loss = 0.0
-    correct = 0
-    total = 0
-
-    current_lr = adjust_learning_rate(optimizer, epoch, opt.milestones)
-    # print('learning_rate: %s' % str(current_lr))
-
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
-        optimizer.zero_grad()
-        inputs, targets = Variable(inputs), Variable(targets)
-        outputs = net(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        utils.clip_gradient(optimizer, 0.1)
-        optimizer.step()
-        train_loss += loss.item()
-        _, predicted = torch.max(outputs.data, 1)
-        total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
-        f_loss = float(train_loss) / float(batch_idx + 1)
-        utils.progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-            % (train_loss/(batch_idx+1), 100.0*float(correct)/float(total), correct, total))
-
-    Train_acc = 100.0*float(correct)/float(total)
-    training_loss.append(f_loss)
-    training_acc.append(Train_acc)
-    # print('Saving..')
-    # state = {
-    #     'net': net.state_dict() if use_cuda else net,
-    # }
-    # torch.save(state, 'train_model.t7')
-
-# Training
 def train(epoch):
     print('\nEpoch: %d' % epoch)
     global Train_acc
@@ -223,7 +183,6 @@ def train(epoch):
         utils.set_lr(optimizer, current_lr)  # set the decayed rate
     else:
         current_lr = opt.lr
-    print('learning_rate: %s' % str(current_lr))
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
@@ -257,40 +216,35 @@ def train(epoch):
     #
     # print('Train loss is:')
     # print(train_loss)
-
 def PublicTest(epoch):
     global PublicTest_acc
     global best_PublicTest_acc
     global best_PublicTest_acc_epoch
     net.eval()
     PublicTest_loss = 0
-    f_loss = 0.0
     correct = 0
     total = 0
     for batch_idx, (inputs, targets) in enumerate(PublicTestloader):
-        bs, ncrops, c, h, w = np.shape(inputs)
-        inputs = inputs.view(-1, c, h, w)
+        bs, c, h, w = np.shape(inputs)
+        inputs = inputs.view(-1,c, h, w)
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         inputs, targets = Variable(inputs, volatile=True), Variable(targets)
         outputs = net(inputs)
-        outputs_avg = outputs.view(bs, ncrops, -1).mean(1)  # avg over crops
-        loss = criterion(outputs_avg, targets)
-        PublicTest_loss += loss.item()
-        _, predicted = torch.max(outputs_avg.data, 1)
+        loss = criterion(outputs, targets)
+        PublicTest_loss += loss.data
+        _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
-        f_loss = float(PublicTest_loss) / float(batch_idx + 1)
+
         utils.progress_bar(batch_idx, len(PublicTestloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                           % (PublicTest_loss / (batch_idx + 1), 100.0 * float(correct) / float(total), correct, total))
+                           % (PublicTest_loss / (batch_idx + 1), 100. * correct / total, correct, total))
 
     # Save checkpoint.
-    PublicTest_acc = 100.0*float(correct)/float(total)
-    validation_acc.append(PublicTest_acc)
-    validation_loss.append(f_loss)
+    PublicTest_acc = 100.*correct/total
     if PublicTest_acc > best_PublicTest_acc:
-        #print('Saving..')
-        #print("best_PublicTest_acc: %0.3f" % PublicTest_acc)
+        print('Saving..')
+        print("best_PublicTest_acc: %0.3f" % PublicTest_acc)
         state = {
             'net': net.state_dict() if use_cuda else net,
             'acc': PublicTest_acc,
@@ -298,44 +252,37 @@ def PublicTest(epoch):
         }
         if not os.path.isdir(path):
             os.mkdir(path)
-        torch.save(state, os.path.join(path,'PublicTest_model.t7'))
+        torch.save(state, os.path.join(path,'one_PublicTest_model.t7'))
         best_PublicTest_acc = PublicTest_acc
         best_PublicTest_acc_epoch = epoch
 
 def PrivateTest(epoch):
-    global Private_count
     global PrivateTest_acc
     global best_PrivateTest_acc
     global best_PrivateTest_acc_epoch
     net.eval()
     PrivateTest_loss = 0
-    f_loss = 0.0
     correct = 0
     total = 0
     for batch_idx, (inputs, targets) in enumerate(PrivateTestloader):
-        bs, ncrops, c, h, w = np.shape(inputs)
-        inputs = inputs.view(-1, c, h, w)
+        bs, c, h, w = np.shape(inputs)
+        inputs = inputs.view(-1,c, h, w)
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         inputs, targets = Variable(inputs, volatile=True), Variable(targets)
         outputs = net(inputs)
-        outputs_avg = outputs.view(bs, ncrops, -1).mean(1)  # avg over crops
-        loss = criterion(outputs_avg, targets)
-        PrivateTest_loss += loss.item()
-        _, predicted = torch.max(outputs_avg.data, 1)
+        loss = criterion(outputs, targets)
+        PrivateTest_loss += loss.data
+        _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
 
-        f_loss = float(PrivateTest_loss) / float(batch_idx + 1)
         utils.progress_bar(batch_idx, len(PublicTestloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-            % (PrivateTest_loss / (batch_idx + 1), 100.0 * float(correct) / float(total), correct, total))
+            % (PrivateTest_loss / (batch_idx + 1), 100. * correct / total, correct, total))
     # Save checkpoint.
-    PrivateTest_acc = 100.0*float(correct)/float(total)
-    test_acc.append(PrivateTest_acc)
-    test_loss.append(f_loss)
+    PrivateTest_acc = 100.*correct/total
+
     if PrivateTest_acc > best_PrivateTest_acc:
-        #print('Saving..')
-        #print("best_PrivateTest_acc: %0.3f" % PrivateTest_acc)
         state = {
             'net': net.state_dict() if use_cuda else net,
 	        'best_PublicTest_acc': best_PublicTest_acc,
@@ -345,7 +292,7 @@ def PrivateTest(epoch):
         }
         if not os.path.isdir(path):
             os.mkdir(path)
-        torch.save(state, os.path.join(path,'PrivateTest_model.t7'))
+        torch.save(state, os.path.join(path,'one_PrivateTest_model.t7'))
         best_PrivateTest_acc = PrivateTest_acc
         best_PrivateTest_acc_epoch = epoch
 

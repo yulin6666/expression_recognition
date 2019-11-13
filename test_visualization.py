@@ -21,8 +21,8 @@ from models import *
 cut_size = 32
 
 transform_test = transforms.Compose([
-    transforms.TenCrop(cut_size),
-    transforms.Lambda(lambda crops: torch.stack([transforms.ToTensor()(crop) for crop in crops])),
+    transforms.Resize(cut_size),
+    transforms.ToTensor()
 ])
 
 def rgb2gray(rgb):
@@ -41,22 +41,20 @@ inputs = transform_test(img)
 class_names = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
 net = mobilenetv2(num_classes=7,input_size=32)
-checkpoint = torch.load(os.path.join('FER2013_mobilenetv2', 'PrivateTest_model.t7'))
+checkpoint = torch.load(os.path.join('FER2013_mobilenetv2', 'one_PrivateTest_model.t7'))
 net.load_state_dict(checkpoint['net'])
 net.cuda()
 net.eval()
 
-ncrops, c, h, w = np.shape(inputs)
-print("ncrops:",ncrops);
+c, h, w = np.shape(inputs)
 print("c:",c);
 print("h:",h);
 print("w:",w);
-
-inputs = inputs.view(-1, c, h, w)
+inputs = inputs.view(-1,c, h, w)
 inputs = inputs.cuda()
 inputs = Variable(inputs, volatile=True)
 outputs = net(inputs)
-print(outputs[0])
+print(outputs)
 
 #outputs_avg = outputs[0].view(ncrops, -1).mean(0)  # avg over crops
 
