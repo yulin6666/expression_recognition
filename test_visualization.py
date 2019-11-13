@@ -11,13 +11,14 @@ import torch.nn.functional as F
 import os
 from torch.autograd import Variable
 from mobilenet_v1 import mobilenet, MobileNet, mobilenet_05
+from mobilenetv2 import mobilenetv2
 
 import transforms as transforms
 from skimage import io
 from skimage.transform import resize
 from models import *
 
-cut_size = 44
+cut_size = 32
 
 transform_test = transforms.Compose([
     transforms.TenCrop(cut_size),
@@ -39,25 +40,28 @@ inputs = transform_test(img)
 
 class_names = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
-net = mobilenet_05(num_classes=7)
-checkpoint = torch.load(os.path.join('FER2013_mobilenet_05', 'PrivateTest_model.t7'))
+net = mobilenetv2(num_classes=7,input_size=32)
+checkpoint = torch.load(os.path.join('FER2013_mobilenetv2', 'PrivateTest_model.t7'))
 net.load_state_dict(checkpoint['net'])
 net.cuda()
 net.eval()
 
 ncrops, c, h, w = np.shape(inputs)
+print("ncrops:",ncrops);
+print("c:",c);
+print("h:",h);
+print("w:",w);
 
 inputs = inputs.view(-1, c, h, w)
 inputs = inputs.cuda()
 inputs = Variable(inputs, volatile=True)
 outputs = net(inputs)
-print(outputs[0].shape)
-print(outputs[1].shape)
+print(outputs[0])
 
-outputs_avg = outputs[1].view(ncrops, -1).mean(0)  # avg over crops
+#outputs_avg = outputs[0].view(ncrops, -1).mean(0)  # avg over crops
 
-score = F.softmax(outputs_avg)
-_, predicted = torch.max(outputs_avg.data, 0)
+score = F.softmax(outputs[0])
+_, predicted = torch.max(outputs[0], 0)
 
 plt.rcParams['figure.figsize'] = (13.5,5.5)
 axes=plt.subplot(1, 3, 1)

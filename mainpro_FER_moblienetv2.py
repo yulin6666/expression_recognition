@@ -22,29 +22,6 @@ from focalloss import FocalLoss
 from torch.autograd import Variable
 from models import *
 
-# data_file = './data/data_mixed.h5'
-# t_length = 74925
-# v_length = 9366
-# te_length = 9369
-# re_length = 96
-
-# data_file = './data/data_pretrain.h5'
-# t_length = 99540
-# v_length = 9366
-# te_length = 9369
-# re_length = 100
-
-data_file = './data/data_wild.h5'
-t_length = 144747
-v_length = 15017
-te_length = 15023
-re_length = 100
-#
-# t_length = 28709
-# v_length = 3589
-# te_length = 3589
-# re_length = 48
-
 training_loss = []
 validation_loss = []
 test_loss = []
@@ -74,8 +51,8 @@ learning_rate_decay_start = 50  # 50
 learning_rate_decay_every = 5 # 5
 learning_rate_decay_rate = 0.9 # 0.9
 
-cut_size = 96
-total_epoch = 100
+cut_size = 32
+total_epoch = 250
 
 path = os.path.join(opt.dataset + '_' + opt.model)
 
@@ -97,12 +74,12 @@ transform_test = transforms.Compose([
 #      transforms.ToTensor(),
 #  ])
 
-trainset = FER2013(split = 'Training', filename=data_file, train_length=t_length, validate_length=v_length, test_length=te_length, resize_length=re_length, transform=transform_train)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=opt.bs, shuffle=True)
-PublicTestset = FER2013(split = 'PublicTest', filename=data_file, train_length=t_length, validate_length=v_length, test_length=te_length, resize_length=re_length, transform=transform_test)
-PublicTestloader = torch.utils.data.DataLoader(PublicTestset, batch_size=int(opt.bs/2), shuffle=False)
-PrivateTestset = FER2013(split = 'PrivateTest', filename=data_file, train_length=t_length, validate_length=v_length, test_length=te_length, resize_length=re_length, transform=transform_test)
-PrivateTestloader = torch.utils.data.DataLoader(PrivateTestset, batch_size=int(opt.bs/2), shuffle=False)
+trainset = FER2013(split = 'Training', transform=transform_train,resize_length=48)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=opt.bs, shuffle=True,num_workers=1)
+PublicTestset = FER2013(split = 'PublicTest',  transform=transform_test,resize_length=48)
+PublicTestloader = torch.utils.data.DataLoader(PublicTestset, batch_size=opt.bs, shuffle=False,num_workers=1)
+PrivateTestset = FER2013(split = 'PrivateTest', transform=transform_test,resize_length = 48)
+PrivateTestloader = torch.utils.data.DataLoader(PrivateTestset, batch_size=opt.bs, shuffle=False,num_workers=1)
 
 # Model
 if opt.model == 'VGG19':
@@ -116,7 +93,7 @@ elif opt.model == 'mobileNet_05':
 elif opt.model == 'mobileResNet_v1':
     net = mobileResnet(num_classes=7)
 elif opt.model == 'mobilenetv2':
-    net = mobilenetv2(num_classes=7, input_size=96)
+    net = mobilenetv2(num_classes=7, input_size=32)
 
 if opt.resume:
     # Load checkpoint.
@@ -138,8 +115,6 @@ if use_cuda:
     net = net.cuda()
 
 criterion = nn.CrossEntropyLoss()
-#criterion = FocalLoss()
-#optimizer = optim.SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5e-4)
 optimizer = optim.SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5e-4)
 
 def write_result_to_file(result_list, filename):
@@ -202,7 +177,7 @@ def train_warmup(epoch):
     total = 0
 
     current_lr = adjust_learning_rate(optimizer, epoch, opt.milestones)
-    print('learning_rate: %s' % str(current_lr))
+    # print('learning_rate: %s' % str(current_lr))
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
@@ -314,8 +289,8 @@ def PublicTest(epoch):
     validation_acc.append(PublicTest_acc)
     validation_loss.append(f_loss)
     if PublicTest_acc > best_PublicTest_acc:
-        print('Saving..')
-        print("best_PublicTest_acc: %0.3f" % PublicTest_acc)
+        #print('Saving..')
+        #print("best_PublicTest_acc: %0.3f" % PublicTest_acc)
         state = {
             'net': net.state_dict() if use_cuda else net,
             'acc': PublicTest_acc,
@@ -359,8 +334,8 @@ def PrivateTest(epoch):
     test_acc.append(PrivateTest_acc)
     test_loss.append(f_loss)
     if PrivateTest_acc > best_PrivateTest_acc:
-        print('Saving..')
-        print("best_PrivateTest_acc: %0.3f" % PrivateTest_acc)
+        #print('Saving..')
+        #print("best_PrivateTest_acc: %0.3f" % PrivateTest_acc)
         state = {
             'net': net.state_dict() if use_cuda else net,
 	        'best_PublicTest_acc': best_PublicTest_acc,
