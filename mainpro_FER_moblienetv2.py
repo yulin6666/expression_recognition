@@ -59,7 +59,7 @@ path = os.path.join(opt.dataset + '_' + opt.model)
 # Data
 print('==> Preparing data..')
 transform_train = transforms.Compose([
-    transforms.RandomCrop(cut_size),
+    transforms.Resize(cut_size),
     transforms.RandomHorizontalFlip(),
     torchvision.transforms.RandomRotation(4, resample=PIL.Image.BILINEAR),
     transforms.ToTensor(),

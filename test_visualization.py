@@ -41,7 +41,7 @@ inputs = transform_test(img)
 class_names = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
 net = mobilenetv2(num_classes=7,input_size=32)
-checkpoint = torch.load(os.path.join('FER2013_mobilenetv2', 'one_PrivateTest_model.t7'))
+checkpoint = torch.load(os.path.join('FER2013_mobilenetv2', 'PublicTest_model.t7'))
 net.load_state_dict(checkpoint['net'])
 net.cuda()
 net.eval()
