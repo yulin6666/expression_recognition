@@ -1,0 +1,3907 @@
+{
+  "transform_params" : {
+    "data" : {
+      "bias_a" : 0,
+      "bias_g" : 0,
+      "bias_r" : 0,
+      "bias_b" : 0,
+      "center_mean" : 0,
+      "is_network_bgr" : 0,
+      "scale" : 1
+    }
+  },
+  "properties" : {
+
+  },
+  "storage" : "model.espresso.weights",
+  "format_version" : 200,
+  "layers" : [
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "315",
+      "blob_weights" : 3,
+      "K" : 3,
+      "blob_biases" : 1,
+      "stride_x" : 2,
+      "name" : "315",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "data",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "315",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "315_min_x_a",
+      "type" : "elementwise",
+      "name" : "317_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "315_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "315_min_x_a_3_post_scale",
+      "type" : "elementwise",
+      "name" : "317_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "315_min_x_a_3_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "315_min_x_a_3_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "317_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "315_min_x_a_3_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "315_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "317_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "315_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "317",
+      "type" : "activation",
+      "name" : "317",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "318",
+      "blob_weights" : 7,
+      "K" : 32,
+      "blob_biases" : 5,
+      "name" : "318",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 32,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "317",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "318",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "318_min_x_a",
+      "type" : "elementwise",
+      "name" : "320_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "318_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "318_min_x_a_7_post_scale",
+      "type" : "elementwise",
+      "name" : "320_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "318_min_x_a_7_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "318_min_x_a_7_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "320_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "318_min_x_a_7_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "318_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "320_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "318_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "320",
+      "type" : "activation",
+      "name" : "320",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "321",
+      "blob_weights" : 11,
+      "K" : 32,
+      "blob_biases" : 9,
+      "name" : "321",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 16,
+      "bottom" : "320",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "323",
+      "blob_weights" : 15,
+      "K" : 16,
+      "blob_biases" : 13,
+      "name" : "323",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "321",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "323",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "323_min_x_a",
+      "type" : "elementwise",
+      "name" : "325_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "323_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "323_min_x_a_12_post_scale",
+      "type" : "elementwise",
+      "name" : "325_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "323_min_x_a_12_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "323_min_x_a_12_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "325_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "323_min_x_a_12_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "323_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "325_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "323_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "325",
+      "type" : "activation",
+      "name" : "325",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "326",
+      "blob_weights" : 19,
+      "K" : 96,
+      "blob_biases" : 17,
+      "stride_x" : 2,
+      "name" : "326",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 96,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "325",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "326",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "326_min_x_a",
+      "type" : "elementwise",
+      "name" : "328_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "326_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "326_min_x_a_16_post_scale",
+      "type" : "elementwise",
+      "name" : "328_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "326_min_x_a_16_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "326_min_x_a_16_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "328_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "326_min_x_a_16_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "326_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "328_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "326_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "328",
+      "type" : "activation",
+      "name" : "328",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "329",
+      "blob_weights" : 23,
+      "K" : 96,
+      "blob_biases" : 21,
+      "name" : "329",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 24,
+      "bottom" : "328",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "331",
+      "blob_weights" : 27,
+      "K" : 24,
+      "blob_biases" : 25,
+      "name" : "331",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "329",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "331",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "331_min_x_a",
+      "type" : "elementwise",
+      "name" : "333_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "331_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "331_min_x_a_21_post_scale",
+      "type" : "elementwise",
+      "name" : "333_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "331_min_x_a_21_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "331_min_x_a_21_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "333_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "331_min_x_a_21_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "331_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "333_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "331_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "333",
+      "type" : "activation",
+      "name" : "333",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "334",
+      "blob_weights" : 31,
+      "K" : 144,
+      "blob_biases" : 29,
+      "name" : "334",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 144,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "333",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "334",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "334_min_x_a",
+      "type" : "elementwise",
+      "name" : "336_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "334_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "334_min_x_a_25_post_scale",
+      "type" : "elementwise",
+      "name" : "336_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "334_min_x_a_25_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "334_min_x_a_25_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "336_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "334_min_x_a_25_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "334_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "336_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "334_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "336",
+      "type" : "activation",
+      "name" : "336",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "337",
+      "blob_weights" : 35,
+      "K" : 144,
+      "blob_biases" : 33,
+      "name" : "337",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 24,
+      "bottom" : "336",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "329,337",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "339",
+      "type" : "elementwise",
+      "name" : "339",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "340",
+      "blob_weights" : 39,
+      "K" : 24,
+      "blob_biases" : 37,
+      "name" : "340",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "339",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "340",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "340_min_x_a",
+      "type" : "elementwise",
+      "name" : "342_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "340_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "340_min_x_a_31_post_scale",
+      "type" : "elementwise",
+      "name" : "342_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "340_min_x_a_31_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "340_min_x_a_31_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "342_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "340_min_x_a_31_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "340_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "342_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "340_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "342",
+      "type" : "activation",
+      "name" : "342",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "343",
+      "blob_weights" : 43,
+      "K" : 144,
+      "blob_biases" : 41,
+      "stride_x" : 2,
+      "name" : "343",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 144,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 144,
+      "bottom" : "342",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "343",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "343_min_x_a",
+      "type" : "elementwise",
+      "name" : "345_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "343_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "343_min_x_a_35_post_scale",
+      "type" : "elementwise",
+      "name" : "345_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "343_min_x_a_35_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "343_min_x_a_35_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "345_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "343_min_x_a_35_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "343_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "345_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "343_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "345",
+      "type" : "activation",
+      "name" : "345",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "346",
+      "blob_weights" : 47,
+      "K" : 144,
+      "blob_biases" : 45,
+      "name" : "346",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "345",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "348",
+      "blob_weights" : 51,
+      "K" : 32,
+      "blob_biases" : 49,
+      "name" : "348",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "346",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "348",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "348_min_x_a",
+      "type" : "elementwise",
+      "name" : "350_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "348_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "348_min_x_a_40_post_scale",
+      "type" : "elementwise",
+      "name" : "350_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "348_min_x_a_40_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "348_min_x_a_40_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "350_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "348_min_x_a_40_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "348_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "350_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "348_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "350",
+      "type" : "activation",
+      "name" : "350",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "351",
+      "blob_weights" : 55,
+      "K" : 192,
+      "blob_biases" : 53,
+      "name" : "351",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 192,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "350",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "351",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "351_min_x_a",
+      "type" : "elementwise",
+      "name" : "353_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "351_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "351_min_x_a_44_post_scale",
+      "type" : "elementwise",
+      "name" : "353_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "351_min_x_a_44_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "351_min_x_a_44_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "353_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "351_min_x_a_44_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "351_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "353_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "351_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "353",
+      "type" : "activation",
+      "name" : "353",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "354",
+      "blob_weights" : 59,
+      "K" : 192,
+      "blob_biases" : 57,
+      "name" : "354",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "353",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "346,354",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "356",
+      "type" : "elementwise",
+      "name" : "356",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "357",
+      "blob_weights" : 63,
+      "K" : 32,
+      "blob_biases" : 61,
+      "name" : "357",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "356",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "357",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "357_min_x_a",
+      "type" : "elementwise",
+      "name" : "359_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "357_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "357_min_x_a_50_post_scale",
+      "type" : "elementwise",
+      "name" : "359_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "357_min_x_a_50_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "357_min_x_a_50_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "359_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "357_min_x_a_50_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "357_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "359_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "357_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "359",
+      "type" : "activation",
+      "name" : "359",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "360",
+      "blob_weights" : 67,
+      "K" : 192,
+      "blob_biases" : 65,
+      "name" : "360",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 192,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "359",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "360",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "360_min_x_a",
+      "type" : "elementwise",
+      "name" : "362_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "360_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "360_min_x_a_54_post_scale",
+      "type" : "elementwise",
+      "name" : "362_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "360_min_x_a_54_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "360_min_x_a_54_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "362_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "360_min_x_a_54_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "360_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "362_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "360_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "362",
+      "type" : "activation",
+      "name" : "362",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "363",
+      "blob_weights" : 71,
+      "K" : 192,
+      "blob_biases" : 69,
+      "name" : "363",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "362",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "356,363",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "365",
+      "type" : "elementwise",
+      "name" : "365",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "366",
+      "blob_weights" : 75,
+      "K" : 32,
+      "blob_biases" : 73,
+      "name" : "366",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "365",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "366",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "366_min_x_a",
+      "type" : "elementwise",
+      "name" : "368_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "366_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "366_min_x_a_60_post_scale",
+      "type" : "elementwise",
+      "name" : "368_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "366_min_x_a_60_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "366_min_x_a_60_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "368_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "366_min_x_a_60_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "366_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "368_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "366_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "368",
+      "type" : "activation",
+      "name" : "368",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "369",
+      "blob_weights" : 79,
+      "K" : 192,
+      "blob_biases" : 77,
+      "stride_x" : 2,
+      "name" : "369",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 192,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 192,
+      "bottom" : "368",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "369",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "369_min_x_a",
+      "type" : "elementwise",
+      "name" : "371_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "369_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "369_min_x_a_64_post_scale",
+      "type" : "elementwise",
+      "name" : "371_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "369_min_x_a_64_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "369_min_x_a_64_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "371_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "369_min_x_a_64_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "369_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "371_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "369_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "371",
+      "type" : "activation",
+      "name" : "371",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "372",
+      "blob_weights" : 83,
+      "K" : 192,
+      "blob_biases" : 81,
+      "name" : "372",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "371",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "374",
+      "blob_weights" : 87,
+      "K" : 64,
+      "blob_biases" : 85,
+      "name" : "374",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "372",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "374",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "374_min_x_a",
+      "type" : "elementwise",
+      "name" : "376_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "374_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "374_min_x_a_69_post_scale",
+      "type" : "elementwise",
+      "name" : "376_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "374_min_x_a_69_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "374_min_x_a_69_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "376_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "374_min_x_a_69_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "374_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "376_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "374_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "376",
+      "type" : "activation",
+      "name" : "376",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "377",
+      "blob_weights" : 91,
+      "K" : 384,
+      "blob_biases" : 89,
+      "name" : "377",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 384,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "376",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "377",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "377_min_x_a",
+      "type" : "elementwise",
+      "name" : "379_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "377_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "377_min_x_a_73_post_scale",
+      "type" : "elementwise",
+      "name" : "379_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "377_min_x_a_73_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "377_min_x_a_73_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "379_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "377_min_x_a_73_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "377_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "379_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "377_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "379",
+      "type" : "activation",
+      "name" : "379",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "380",
+      "blob_weights" : 95,
+      "K" : 384,
+      "blob_biases" : 93,
+      "name" : "380",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "379",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "372,380",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "382",
+      "type" : "elementwise",
+      "name" : "382",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "383",
+      "blob_weights" : 99,
+      "K" : 64,
+      "blob_biases" : 97,
+      "name" : "383",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "382",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "383",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "383_min_x_a",
+      "type" : "elementwise",
+      "name" : "385_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "383_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "383_min_x_a_79_post_scale",
+      "type" : "elementwise",
+      "name" : "385_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "383_min_x_a_79_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "383_min_x_a_79_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "385_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "383_min_x_a_79_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "383_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "385_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "383_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "385",
+      "type" : "activation",
+      "name" : "385",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "386",
+      "blob_weights" : 103,
+      "K" : 384,
+      "blob_biases" : 101,
+      "name" : "386",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 384,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "385",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "386",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "386_min_x_a",
+      "type" : "elementwise",
+      "name" : "388_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "386_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "386_min_x_a_83_post_scale",
+      "type" : "elementwise",
+      "name" : "388_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "386_min_x_a_83_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "386_min_x_a_83_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "388_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "386_min_x_a_83_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "386_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "388_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "386_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "388",
+      "type" : "activation",
+      "name" : "388",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "389",
+      "blob_weights" : 107,
+      "K" : 384,
+      "blob_biases" : 105,
+      "name" : "389",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "388",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "382,389",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "391",
+      "type" : "elementwise",
+      "name" : "391",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "392",
+      "blob_weights" : 111,
+      "K" : 64,
+      "blob_biases" : 109,
+      "name" : "392",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "391",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "392",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "392_min_x_a",
+      "type" : "elementwise",
+      "name" : "394_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "392_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "392_min_x_a_89_post_scale",
+      "type" : "elementwise",
+      "name" : "394_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "392_min_x_a_89_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "392_min_x_a_89_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "394_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "392_min_x_a_89_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "392_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "394_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "392_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "394",
+      "type" : "activation",
+      "name" : "394",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "395",
+      "blob_weights" : 115,
+      "K" : 384,
+      "blob_biases" : 113,
+      "name" : "395",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 384,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "394",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "395",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "395_min_x_a",
+      "type" : "elementwise",
+      "name" : "397_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "395_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "395_min_x_a_93_post_scale",
+      "type" : "elementwise",
+      "name" : "397_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "395_min_x_a_93_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "395_min_x_a_93_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "397_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "395_min_x_a_93_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "395_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "397_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "395_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "397",
+      "type" : "activation",
+      "name" : "397",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "398",
+      "blob_weights" : 119,
+      "K" : 384,
+      "blob_biases" : 117,
+      "name" : "398",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 64,
+      "bottom" : "397",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "391,398",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "400",
+      "type" : "elementwise",
+      "name" : "400",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "401",
+      "blob_weights" : 123,
+      "K" : 64,
+      "blob_biases" : 121,
+      "name" : "401",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "400",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "401",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "401_min_x_a",
+      "type" : "elementwise",
+      "name" : "403_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "401_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "401_min_x_a_99_post_scale",
+      "type" : "elementwise",
+      "name" : "403_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "401_min_x_a_99_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "401_min_x_a_99_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "403_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "401_min_x_a_99_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "401_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "403_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "401_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "403",
+      "type" : "activation",
+      "name" : "403",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "404",
+      "blob_weights" : 127,
+      "K" : 384,
+      "blob_biases" : 125,
+      "name" : "404",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 384,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 384,
+      "bottom" : "403",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "404",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "404_min_x_a",
+      "type" : "elementwise",
+      "name" : "406_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "404_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "404_min_x_a_103_post_scale",
+      "type" : "elementwise",
+      "name" : "406_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "404_min_x_a_103_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "404_min_x_a_103_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "406_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "404_min_x_a_103_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "404_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "406_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "404_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "406",
+      "type" : "activation",
+      "name" : "406",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "407",
+      "blob_weights" : 131,
+      "K" : 384,
+      "blob_biases" : 129,
+      "name" : "407",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "406",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "409",
+      "blob_weights" : 135,
+      "K" : 96,
+      "blob_biases" : 133,
+      "name" : "409",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "407",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "409",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "409_min_x_a",
+      "type" : "elementwise",
+      "name" : "411_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "409_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "409_min_x_a_108_post_scale",
+      "type" : "elementwise",
+      "name" : "411_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "409_min_x_a_108_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "409_min_x_a_108_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "411_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "409_min_x_a_108_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "409_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "411_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "409_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "411",
+      "type" : "activation",
+      "name" : "411",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "412",
+      "blob_weights" : 139,
+      "K" : 576,
+      "blob_biases" : 137,
+      "name" : "412",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "411",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "412",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "412_min_x_a",
+      "type" : "elementwise",
+      "name" : "414_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "412_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "412_min_x_a_112_post_scale",
+      "type" : "elementwise",
+      "name" : "414_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "412_min_x_a_112_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "412_min_x_a_112_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "414_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "412_min_x_a_112_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "412_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "414_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "412_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "414",
+      "type" : "activation",
+      "name" : "414",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "415",
+      "blob_weights" : 143,
+      "K" : 576,
+      "blob_biases" : 141,
+      "name" : "415",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "414",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "407,415",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "417",
+      "type" : "elementwise",
+      "name" : "417",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "418",
+      "blob_weights" : 147,
+      "K" : 96,
+      "blob_biases" : 145,
+      "name" : "418",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "417",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "418",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "418_min_x_a",
+      "type" : "elementwise",
+      "name" : "420_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "418_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "418_min_x_a_118_post_scale",
+      "type" : "elementwise",
+      "name" : "420_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "418_min_x_a_118_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "418_min_x_a_118_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "420_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "418_min_x_a_118_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "418_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "420_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "418_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "420",
+      "type" : "activation",
+      "name" : "420",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "421",
+      "blob_weights" : 151,
+      "K" : 576,
+      "blob_biases" : 149,
+      "name" : "421",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "420",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "421",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "421_min_x_a",
+      "type" : "elementwise",
+      "name" : "423_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "421_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "421_min_x_a_122_post_scale",
+      "type" : "elementwise",
+      "name" : "423_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "421_min_x_a_122_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "421_min_x_a_122_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "423_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "421_min_x_a_122_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "421_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "423_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "421_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "423",
+      "type" : "activation",
+      "name" : "423",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "424",
+      "blob_weights" : 155,
+      "K" : 576,
+      "blob_biases" : 153,
+      "name" : "424",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 96,
+      "bottom" : "423",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "417,424",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "426",
+      "type" : "elementwise",
+      "name" : "426",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "427",
+      "blob_weights" : 159,
+      "K" : 96,
+      "blob_biases" : 157,
+      "name" : "427",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "426",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "427",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "427_min_x_a",
+      "type" : "elementwise",
+      "name" : "429_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "427_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "427_min_x_a_128_post_scale",
+      "type" : "elementwise",
+      "name" : "429_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "427_min_x_a_128_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "427_min_x_a_128_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "429_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "427_min_x_a_128_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "427_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "429_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "427_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "429",
+      "type" : "activation",
+      "name" : "429",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "430",
+      "blob_weights" : 163,
+      "K" : 576,
+      "blob_biases" : 161,
+      "stride_x" : 2,
+      "name" : "430",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 576,
+      "pad_t" : 1,
+      "stride_y" : 2,
+      "has_biases" : 1,
+      "C" : 576,
+      "bottom" : "429",
+      "weights" : {
+
+      },
+      "Nx" : 3,
+      "pad_mode" : 0,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "430",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "430_min_x_a",
+      "type" : "elementwise",
+      "name" : "432_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "430_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "430_min_x_a_132_post_scale",
+      "type" : "elementwise",
+      "name" : "432_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "430_min_x_a_132_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "430_min_x_a_132_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "432_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "430_min_x_a_132_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "430_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "432_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "430_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "432",
+      "type" : "activation",
+      "name" : "432",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "433",
+      "blob_weights" : 167,
+      "K" : 576,
+      "blob_biases" : 165,
+      "name" : "433",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 160,
+      "bottom" : "432",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "435",
+      "blob_weights" : 171,
+      "K" : 160,
+      "blob_biases" : 169,
+      "name" : "435",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "433",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "435",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "435_min_x_a",
+      "type" : "elementwise",
+      "name" : "437_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "435_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "435_min_x_a_137_post_scale",
+      "type" : "elementwise",
+      "name" : "437_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "435_min_x_a_137_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "435_min_x_a_137_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "437_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "435_min_x_a_137_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "435_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "437_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "435_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "437",
+      "type" : "activation",
+      "name" : "437",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "438",
+      "blob_weights" : 175,
+      "K" : 960,
+      "blob_biases" : 173,
+      "name" : "438",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 960,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "437",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "438",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "438_min_x_a",
+      "type" : "elementwise",
+      "name" : "440_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "438_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "438_min_x_a_141_post_scale",
+      "type" : "elementwise",
+      "name" : "440_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "438_min_x_a_141_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "438_min_x_a_141_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "440_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "438_min_x_a_141_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "438_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "440_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "438_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "440",
+      "type" : "activation",
+      "name" : "440",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "441",
+      "blob_weights" : 179,
+      "K" : 960,
+      "blob_biases" : 177,
+      "name" : "441",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 160,
+      "bottom" : "440",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "433,441",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "443",
+      "type" : "elementwise",
+      "name" : "443",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "444",
+      "blob_weights" : 183,
+      "K" : 160,
+      "blob_biases" : 181,
+      "name" : "444",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "443",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "444",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "444_min_x_a",
+      "type" : "elementwise",
+      "name" : "446_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "444_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "444_min_x_a_147_post_scale",
+      "type" : "elementwise",
+      "name" : "446_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "444_min_x_a_147_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "444_min_x_a_147_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "446_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "444_min_x_a_147_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "444_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "446_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "444_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "446",
+      "type" : "activation",
+      "name" : "446",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "447",
+      "blob_weights" : 187,
+      "K" : 960,
+      "blob_biases" : 185,
+      "name" : "447",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 960,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "446",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "447",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "447_min_x_a",
+      "type" : "elementwise",
+      "name" : "449_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "447_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "447_min_x_a_151_post_scale",
+      "type" : "elementwise",
+      "name" : "449_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "447_min_x_a_151_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "447_min_x_a_151_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "449_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "447_min_x_a_151_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "447_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "449_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "447_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "449",
+      "type" : "activation",
+      "name" : "449",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "450",
+      "blob_weights" : 191,
+      "K" : 960,
+      "blob_biases" : 189,
+      "name" : "450",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 160,
+      "bottom" : "449",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 1,
+      "bottom" : "443,450",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "452",
+      "type" : "elementwise",
+      "name" : "452",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "453",
+      "blob_weights" : 195,
+      "K" : 160,
+      "blob_biases" : 193,
+      "name" : "453",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "452",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "453",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "453_min_x_a",
+      "type" : "elementwise",
+      "name" : "455_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "453_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "453_min_x_a_157_post_scale",
+      "type" : "elementwise",
+      "name" : "455_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "453_min_x_a_157_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "453_min_x_a_157_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "455_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "453_min_x_a_157_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "453_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "455_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "453_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "455",
+      "type" : "activation",
+      "name" : "455",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 1,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 1,
+      "pad_l" : 1,
+      "top" : "456",
+      "blob_weights" : 199,
+      "K" : 960,
+      "blob_biases" : 197,
+      "name" : "456",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 960,
+      "pad_t" : 1,
+      "has_biases" : 1,
+      "C" : 960,
+      "bottom" : "455",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 3,
+      "pad_value" : 0,
+      "Ny" : 3,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "456",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "456_min_x_a",
+      "type" : "elementwise",
+      "name" : "458_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "456_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "456_min_x_a_161_post_scale",
+      "type" : "elementwise",
+      "name" : "458_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "456_min_x_a_161_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "456_min_x_a_161_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "458_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "456_min_x_a_161_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "456_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "458_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "456_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "458",
+      "type" : "activation",
+      "name" : "458",
+      "beta" : 0
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "459",
+      "blob_weights" : 203,
+      "K" : 960,
+      "blob_biases" : 201,
+      "name" : "459",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 320,
+      "bottom" : "458",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "pad_r" : 0,
+      "fused_relu" : 0,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "461",
+      "blob_weights" : 207,
+      "K" : 320,
+      "blob_biases" : 205,
+      "name" : "461",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 1280,
+      "bottom" : "459",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 1,
+      "pad_value" : 0,
+      "Ny" : 1,
+      "n_parallel" : 1
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "461",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "461_min_x_a",
+      "type" : "elementwise",
+      "name" : "463_min_x_a",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "461_min_x_a",
+      "operation" : 1,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "461_min_x_a_166_post_scale",
+      "type" : "elementwise",
+      "name" : "463_min_minus_x_minus_b_scale",
+      "beta" : 0
+    },
+    {
+      "alpha" : 0,
+      "bottom" : "461_min_x_a_166_post_scale",
+      "operation" : 0,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "461_min_x_a_166_post_scale_shift",
+      "type" : "elementwise",
+      "name" : "463_min_minus_x_minus_b_shift",
+      "beta" : 0
+    },
+    {
+      "alpha" : -6,
+      "bottom" : "461_min_x_a_166_post_scale_shift",
+      "operation" : 25,
+      "weights" : {
+
+      },
+      "fused_relu" : 0,
+      "top" : "461_min_minus_x_minus_b",
+      "type" : "elementwise",
+      "name" : "463_min_minus_x_minus_b",
+      "beta" : 0
+    },
+    {
+      "alpha" : -1,
+      "bottom" : "461_min_minus_x_minus_b",
+      "weights" : {
+
+      },
+      "mode" : 6,
+      "top" : "463",
+      "type" : "activation",
+      "name" : "463",
+      "beta" : 0
+    },
+    {
+      "pad_value" : 0,
+      "average_count_exclude_padding" : 1,
+      "top_shape_style" : 0,
+      "avg_or_max" : 0,
+      "stride_x" : 1,
+      "pad_mode" : 2,
+      "stride_y" : 1,
+      "pad_t" : 0,
+      "weights" : {
+
+      },
+      "size_y" : 1,
+      "type" : "pool",
+      "pad_r" : 0,
+      "pad_b" : 0,
+      "size_x" : 1,
+      "pad_fill_mode" : 0,
+      "bottom" : "463",
+      "pad_l" : 0,
+      "name" : "465",
+      "top" : "465"
+    },
+    {
+      "bottom" : "465",
+      "weights" : {
+
+      },
+      "mode" : 0,
+      "nd_axis" : 0,
+      "top" : "473",
+      "type" : "flatten",
+      "name" : "473"
+    },
+    {
+      "nB" : 1280,
+      "top" : "outTensor",
+      "has_biases" : 1,
+      "weights" : {
+
+      },
+      "nC" : 7,
+      "blob_weights" : 211,
+      "type" : "inner_product",
+      "has_relu" : 0,
+      "bottom" : "473",
+      "blob_biases" : 209,
+      "has_tanh" : 0,
+      "name" : "outTensor",
+      "has_prelu" : 0
+    }
+  ]
+}
