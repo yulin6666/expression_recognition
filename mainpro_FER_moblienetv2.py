@@ -74,11 +74,11 @@ transform_test = transforms.Compose([
 #      transforms.ToTensor(),
 #  ])
 
-trainset = FER2013(split = 'Training', transform=transform_train,resize_length=48)
+trainset = FER2013(split = 'Training', filename='./data/data_plus.h5',transform=transform_train,resize_length=48)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=opt.bs, shuffle=True,num_workers=1)
-PublicTestset = FER2013(split = 'PublicTest',  transform=transform_test,resize_length=48)
+PublicTestset = FER2013(split = 'PublicTest',filename='./data/data_plus.h5',transform=transform_test,resize_length=48)
 PublicTestloader = torch.utils.data.DataLoader(PublicTestset, batch_size=opt.bs, shuffle=False,num_workers=1)
-PrivateTestset = FER2013(split = 'PrivateTest', transform=transform_test,resize_length = 48)
+PrivateTestset = FER2013(split = 'PrivateTest',filename='./data/data_plus.h5', transform=transform_test,resize_length = 48)
 PrivateTestloader = torch.utils.data.DataLoader(PrivateTestset, batch_size=opt.bs, shuffle=False,num_workers=1)
 
 # Model
