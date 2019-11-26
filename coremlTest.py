@@ -1,7 +1,7 @@
 from PIL import Image
 import coremltools
 import numpy as np
-mlmodel = coremltools.models.MLModel('FER2013_VGG19.mlmodel')
+mlmodel = coremltools.models.MLModel('FER2013_mobilenetv2_privateTest_sim_13.mlmodel')
 pil_img = Image.open('images/1_gray_32.jpg')
 
 def softmax(x):
@@ -27,7 +27,8 @@ def softmax(x):
 out = mlmodel.predict({'data': pil_img})
 
 outTensor = out['outTensor'];
-result =outTensor[0,0,:,0,0];
+print(outTensor.shape)
+result =outTensor[0,:];
 print(result)
 print(softmax(result))
 
