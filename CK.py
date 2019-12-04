@@ -3,10 +3,7 @@ from PIL import Image
 import numpy as np
 import h5py
 import torch.utils.data as data
-import cv2
 
-def xrange(x):
-    return iter(range(x))
 
 class CK(data.Dataset):
     """`CK+ Dataset.
@@ -36,14 +33,14 @@ class CK(data.Dataset):
         test_index = []
         train_index = []
 
-        for j in xrange(len(test_number)):
-            for k in xrange(test_number[j]):
+        for j in range(len(test_number)):
+            for k in range(test_number[j]):
                 if self.fold != 10: #the last fold start from the last element
                     test_index.append(sum_number[j]+(self.fold-1)*test_number[j]+k)
                 else:
                     test_index.append(sum_number[j+1]-1-k)
 
-        for i in xrange(number):
+        for i in range(number):
             if i not in test_index:
                 train_index.append(i)
 
@@ -53,17 +50,14 @@ class CK(data.Dataset):
         if self.split == 'Training':
             self.train_data = []
             self.train_labels = []
-            for ind in xrange(len(train_index)):
+            for ind in range(len(train_index)):
                 self.train_data.append(self.data['data_pixel'][train_index[ind]])
-                sb1 = self.data['data_pixel'][train_index[ind]]
-                sb1 = sb1.astype(np.uint8)
                 self.train_labels.append(self.data['data_label'][train_index[ind]])
-                sb_label = self.data['data_label'][train_index[ind]]
 
         elif self.split == 'Testing':
             self.test_data = []
             self.test_labels = []
-            for ind in xrange(len(test_index)):
+            for ind in range(len(test_index)):
                 self.test_data.append(self.data['data_pixel'][test_index[ind]])
                 self.test_labels.append(self.data['data_label'][test_index[ind]])
 
